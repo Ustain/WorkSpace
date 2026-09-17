@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>客服工单趋势分析</title>
+  <style>
+    :root {
+      --card: #1e293b; --line: #334155; --text: #e2e8f0; --muted: #94a3b8; --accent: #38bdf8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: "Segoe UI", "PingFang SC", sans-serif;
+      background: linear-gradient(180deg, #0b1220, #0f172a); color: var(--text);
+    }
+    header { padding: 32px 40px 12px; }
+    h1 { margin: 0 0 8px; font-size: 28px; }
+    .sub { color: var(--muted); margin: 4px 0 8px; }
+    .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding: 0 40px 24px; }
+    .card { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 18px 20px; }
+    .kpi { font-size: 28px; font-weight: 700; color: var(--accent); }
+    .charts { display: grid; grid-template-columns: 1.4fr 1fr; gap: 16px; padding: 0 40px 24px; }
+    section { padding: 0 40px 28px; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { border-bottom: 1px solid var(--line); padding: 10px 8px; text-align: left; vertical-align: top; }
+    th { color: var(--muted); font-weight: 600; }
+    .tag { padding: 2px 8px; border-radius: 999px; font-size: 12px; }
+    .p0 { background: #7f1d1d; color: #fecaca; }
+    .p1 { background: #7c2d12; color: #fed7aa; }
+    ul { line-height: 1.7; }
+    .chart { width: 100%; height: auto; }
+    .legends { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; color: var(--muted); font-size: 12px; }
+    .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; }
+    @media (max-width: 960px) {
+      .grid, .charts { grid-template-columns: 1fr; }
+      header, .grid, .charts, section { padding-left: 16px; padding-right: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>客服工单趋势分析</h1>
+    <div class="sub">观察期 2024-06-01 ~ 2024-06-11 ｜ 样本 50 单 ｜ 图表离线 SVG，无需外网</div>
+  </header>
+  <div class="grid">
+    <div class="card"><div class="sub">工单总量</div><div class="kpi">50</div></div>
+    <div class="card"><div class="sub">未解决率</div><div class="kpi">16.0%</div></div>
+    <div class="card"><div class="sub">平均处理时长</div><div class="kpi">19.69h</div></div>
+    <div class="card"><div class="sub">平均满意度</div><div class="kpi">2.36</div></div>
+  </div>
+  <div class="charts">
+    <div class="card"><b>每日工单量与分类构成</b><div id="dailyChart"><svg class="chart" viewBox="0 0 640 260" role="img" aria-label="每日工单量与分类构成"><rect x="36.0" y="189.3" width="45.8" height="34.7" fill="#f97316"><title>2024-06-01 退款退货 1</title></rect><rect x="36.0" y="154.7" width="45.8" height="34.7" fill="#a78bfa"><title>2024-06-01 物流查询 1</title></rect><rect x="36.0" y="120.0" width="45.8" height="34.7" fill="#34d399"><title>2024-06-01 商品咨询 1</title></rect><text x="58.9" y="246" text-anchor="middle" fill="#94a3b8" font-size="11">06-01</text><rect x="89.8" y="189.3" width="45.8" height="34.7" fill="#f97316"><title>2024-06-02 退款退货 1</title></rect><rect x="89.8" y="154.7" width="45.8" height="34.7" fill="#a78bfa"><title>2024-06-02 物流查询 1</title></rect><rect x="89.8" y="120.0" width="45.8" height="34.7" fill="#fb7185"><title>2024-06-02 账号问题 1</title></rect><text x="112.7" y="246" text-anchor="middle" fill="#94a3b8" font-size="11">06-02</text><rect x="143.6" y="189.3" width="45.8" height="34.7" fill="#38bdf8"><title>2024-06-03 支付问题 1</title></rect><rect x="143.6" y="154.7" width="45.8" height="34.7" fill="#f97316"><title>2024-06-03 退款退货 1</title></rect><rect x="143.6" y="120.0" width="45.8" height="34.7" fill="#34d399"><title>2024-06-03 商品咨询 1</title></rect><rect x="143.6" y="85.3" width="45.8" height="34.7" fill="#facc15"><title>2024-06-03 投诉 1</title></rect><text x="166.5" y="246" text-anchor="middle" fill="#94a3b8" font-size="11">06-03</text><rect x="197.5" y="189.3" width="45.8" height="34.7" fill="#38bdf8"><title>2024-06-04 支付问题 1</title></rect><rect x="197.5" y="120.0" width="45.8" height="69.3" fill="#f97316"><title>2024-06-04 退款退货 2</title></rect><rect x="197.5" y="85.3" width="45.8" height="34.7" fill="#a78bfa"><title>2024-06-04 物流查询 1</title></rect><rect x="197.5" y="50.7" width="45.8" height="34.7" fill="#34d399"><title>2024-06-04 商品咨询 1</title></rect><text x="220.4" y="246" text-anchor="middle" fill="#94a3b8" font-size="11">06-04</text><rect x="251.3" y="189.3" width="45.8" height="34.7" fill="#38bdf8"><title>2024-06-05 支付问题 1</title></rect><rect x="251.3" y="154.7" width="45.8" height="34.7" fill="#f97316"><title>2024-06-05 退款退货 1</title></rect><rect x="251.3" y="120.0" width="45.8" height="34.7" fill="#a78bfa"><title>2024-06-05 物流查询 1</title></rect><rect x="251.3" y="85.3" width="45.8" height="34.7" fill="#fb7185"><title>2024-06-05 账号问题 1</title></rect><text x="274.2" y="246" text-anchor="middle" fill="#94a3b8" font-size="11">06-05</text><rect x="305.1" y="154.7" width="45.8" height="69.3" fill="#38bdf8"><title>2024-06-06 支付问题 2</title></rect><rect x="305.1" y="120.0" width="45.8" height="34.7" fill="#f97316"><title>2024-06-06 退款退货 1</title></rect><rect x="305.1" y="85.3" width="45.8" height="34.7" fill="#34d399"><title>2024-06-06 商品咨询 1</title></rect><rect x="305.1" y="50.7" width="45.8" height="34.7" fill="#facc15"><title>2024-06-06 投诉 1</title></rect><text x="328.0" y="246" text-anchor="middle" fill="#94a3b8" font-size="11">06-06</text><rect x="358.9" y="154.7" width="45.8" height="69.3" fill="#38bdf8"><title>2024-06-07 支付问题 2</title></rect><rect x="358.9" y="120.0" width="45.8" height="34.7" fill="#f97316"><title>2024-06-07 退款退货 1</title></rect><rect x="358.9" y="85.3" width="45.8" height="34.7" fill="#a78bfa"><title>2024-06-07 物流查询 1</title></rect><rect x="358.9" y="50.7" width="45.8" height="34.7" fill="#fb7185"><title>2024-06-07 账号问题 1</title></rect><text x="381.8" y="246" text-anchor="middle" fill="#94a3b8" font-size="11">06-07</text><rect x="412.7" y="154.7" width="45.8" height="69.3" fill="#38bdf8"><title>2024-06-08 支付问题 2</title></rect><rect x="412.7" y="120.0" width="45.8" height="34.7" fill="#f97316"><title>2024-06-08 退款退货 1</title></rect><rect x="412.7" y="85.3" width="45.8" height="34.7" fill="#a78bfa"><title>2024-06-08 物流查询 1</title></rect><rect x="412.7" y="50.7" width="45.8" height="34.7" fill="#facc15"><title>2024-06-08 投诉 1</title></rect><text x="435.6" y="246" text-anchor="middle" fill="#94a3b8" font-size="11">06-08</text><rect x="466.5" y="154.7" width="45.8" height="69.3" fill="#38bdf8"><title>2024-06-09 支付问题 2</title></rect><rect x="466.5" y="85.3" width="45.8" height="69.3" fill="#f97316"><title>2024-06-09 退款退货 2</title></rect><rect x="466.5" y="50.7" width="45.8" height="34.7" fill="#34d399"><title>2024-06-09 商品咨询 1</title></rect><text x="489.5" y="246" text-anchor="middle" fill="#94a3b8" font-size="11">06-09</text><rect x="520.4" y="154.7" width="45.8" height="69.3" fill="#38bdf8"><title>2024-06-10 支付问题 2</title></rect><rect x="520.4" y="120.0" width="45.8" height="34.7" fill="#f97316"><title>2024-06-10 退款退货 1</title></rect><rect x="520.4" y="85.3" width="45.8" height="34.7" fill="#a78bfa"><title>2024-06-10 物流查询 1</title></rect><rect x="520.4" y="50.7" width="45.8" height="34.7" fill="#fb7185"><title>2024-06-10 账号问题 1</title></rect><rect x="520.4" y="16.0" width="45.8" height="34.7" fill="#facc15"><title>2024-06-10 投诉 1</title></rect><text x="543.3" y="246" text-anchor="middle" fill="#94a3b8" font-size="11">06-10</text><rect x="574.2" y="120.0" width="45.8" height="104.0" fill="#38bdf8"><title>2024-06-11 支付问题 3</title></rect><rect x="574.2" y="85.3" width="45.8" height="34.7" fill="#f97316"><title>2024-06-11 退款退货 1</title></rect><rect x="574.2" y="50.7" width="45.8" height="34.7" fill="#a78bfa"><title>2024-06-11 物流查询 1</title></rect><text x="597.1" y="246" text-anchor="middle" fill="#94a3b8" font-size="11">06-11</text></svg><div class="legends"><span class="legend"><i style="background:#38bdf8"></i>支付问题</span><span class="legend"><i style="background:#f97316"></i>退款退货</span><span class="legend"><i style="background:#a78bfa"></i>物流查询</span><span class="legend"><i style="background:#34d399"></i>商品咨询</span><span class="legend"><i style="background:#fb7185"></i>账号问题</span><span class="legend"><i style="background:#facc15"></i>投诉</span></div></div></div>
+    <div class="card"><b>分类分布</b><div id="catChart"><svg class="chart" viewBox="0 0 420 192" role="img" aria-label="分类分布"><text x="0" y="22" fill="#cbd5e1" font-size="12">支付问题</text><rect x="84" y="8" width="220.0" height="16" rx="4" fill="#38bdf8"></rect><text x="312.0" y="21" fill="#94a3b8" font-size="12">16</text><text x="0" y="50" fill="#cbd5e1" font-size="12">退款退货</text><rect x="84" y="36" width="178.8" height="16" rx="4" fill="#f97316"></rect><text x="270.8" y="49" fill="#94a3b8" font-size="12">13</text><text x="0" y="78" fill="#cbd5e1" font-size="12">物流查询</text><rect x="84" y="64" width="110.0" height="16" rx="4" fill="#a78bfa"></rect><text x="202.0" y="77" fill="#94a3b8" font-size="12">8</text><text x="0" y="106" fill="#cbd5e1" font-size="12">商品咨询</text><rect x="84" y="92" width="68.8" height="16" rx="4" fill="#34d399"></rect><text x="160.8" y="105" fill="#94a3b8" font-size="12">5</text><text x="0" y="134" fill="#cbd5e1" font-size="12">账号问题</text><rect x="84" y="120" width="55.0" height="16" rx="4" fill="#fb7185"></rect><text x="147.0" y="133" fill="#94a3b8" font-size="12">4</text><text x="0" y="162" fill="#cbd5e1" font-size="12">投诉</text><rect x="84" y="148" width="55.0" height="16" rx="4" fill="#facc15"></rect><text x="147.0" y="161" fill="#94a3b8" font-size="12">4</text></svg></div></div>
+  </div>
+  <section class="card" style="margin: 0 40px 24px;">
+    <h2>今日关注</h2>
+    <ul><li><strong>P0 「支付问题」后期明显变多（T020, T022, T025, T028, T030）</strong><div class='sub'>前半窗口 2024-06-01~2024-06-05 共 3 单（日均 0.60），后半窗口 2024-06-06~2024-06-11 共 13 单（日均 2.17），日均增幅 261%。规则：后期≥4 单、净增≥3、日均增幅≥50%；描述命中资金风险词，共 6 单；与支付突增合并解读，不再单列重复扣款主题</div><div>动作：立刻核对支付对账，优先退回多扣金额并排查支付回调。</div></li><li><strong>P0 7 张高优先级工单仍未关闭（T019, T031, T036, T039, T042）</strong><div class='sub'>规则：priority=高 且 is_resolved=false。其中退款退货 5 张；命中延迟/体验主题词后共 5 单，阈值 3。不含单纯询价运费</div><div>动作：今日站会按资金/退款/物流顺序逐单闭环，未关单不过夜。</div></li><li><strong>P1 电话渠道满意度比在线低 0.62 分</strong><div class='sub'>电话 16 单均分 1.94，在线 34 单均分 2.56，差距 0.62 ≥ 0.4。电话未解决 4 单</div><div>动作：电话进线按退款/物流优先人工接入，不要再先走机器人。</div></li></ul>
+  </section>
+  <section>
+    <h2>分类统计</h2>
+    <table>
+      <thead><tr><th>分类</th><th>数量</th><th>占比</th><th>平均时长</th><th>满意度</th><th>未解决</th></tr></thead>
+      <tbody><tr><td>支付问题</td><td>16</td><td>32.0%</td><td>5.25</td><td>2.25</td><td>1</td></tr><tr><td>退款退货</td><td>13</td><td>26.0%</td><td>45.23</td><td>2.0</td><td>5</td></tr><tr><td>物流查询</td><td>8</td><td>16.0%</td><td>24.5</td><td>2.12</td><td>2</td></tr><tr><td>商品咨询</td><td>5</td><td>10.0%</td><td>0.9</td><td>4.2</td><td>0</td></tr><tr><td>账号问题</td><td>4</td><td>8.0%</td><td>5.0</td><td>3.5</td><td>0</td></tr><tr><td>投诉</td><td>4</td><td>8.0%</td><td>23.0</td><td>1.0</td><td>0</td></tr></tbody>
+    </table>
+  </section>
+  <section>
+    <h2>渠道 × 分类</h2>
+    <table>
+      <thead><tr><th>渠道</th><th>分类</th><th>数量</th><th>未解决</th><th>满意度</th></tr></thead>
+      <tbody><tr><td>在线</td><td>支付问题</td><td>12</td><td>1</td><td>2.33</td></tr><tr><td>在线</td><td>退款退货</td><td>8</td><td>2</td><td>2.12</td></tr><tr><td>在线</td><td>商品咨询</td><td>5</td><td>0</td><td>4.2</td></tr><tr><td>在线</td><td>物流查询</td><td>4</td><td>1</td><td>2.5</td></tr><tr><td>在线</td><td>投诉</td><td>3</td><td>0</td><td>1.0</td></tr><tr><td>在线</td><td>账号问题</td><td>2</td><td>0</td><td>4.0</td></tr><tr><td>电话</td><td>退款退货</td><td>5</td><td>3</td><td>1.8</td></tr><tr><td>电话</td><td>物流查询</td><td>4</td><td>1</td><td>1.75</td></tr><tr><td>电话</td><td>支付问题</td><td>4</td><td>0</td><td>2.0</td></tr><tr><td>电话</td><td>账号问题</td><td>2</td><td>0</td><td>3.0</td></tr><tr><td>电话</td><td>投诉</td><td>1</td><td>0</td><td>1.0</td></tr></tbody>
+    </table>
+  </section>
+  <section>
+    <h2>高优先级未解决</h2>
+    <table>
+      <thead><tr><th>工单</th><th>分类</th><th>渠道</th><th>描述</th><th>满意度</th></tr></thead>
+      <tbody><tr><td>T019</td><td>物流查询</td><td>电话</td><td>包裹被退回了 我没让退啊</td><td>1</td></tr><tr><td>T031</td><td>退款退货</td><td>电话</td><td>退货快递费我垫付了 说好了退给我 到现在没退</td><td>1</td></tr><tr><td>T036</td><td>退款退货</td><td>在线</td><td>七天无理由退货 你们不给退 凭什么</td><td>1</td></tr><tr><td>T039</td><td>退款退货</td><td>电话</td><td>商品还没收到就已经自动确认收货了 我要退款</td><td>1</td></tr><tr><td>T042</td><td>退款退货</td><td>在线</td><td>退货运费垫付了28块 你们说要报销的 什么时候给</td><td>1</td></tr><tr><td>T046</td><td>支付问题</td><td>在线</td><td>又出现重复扣款了 上个月也有过</td><td>1</td></tr><tr><td>T047</td><td>退款退货</td><td>电话</td><td>退了一个星期了 退款还在处理中 你们是不是不想退</td><td>1</td></tr></tbody>
+    </table>
+  </section>
+  <section>
+    <h2>异常信号</h2>
+    <table>
+      <thead><tr><th>级别</th><th>类型</th><th>发现</th><th>判断依据</th><th>工单</th><th>建议</th></tr></thead>
+      <tbody><tr><td><span class='tag p0'>P0</span></td><td>高优未解决</td><td>7 张高优先级工单仍未关闭</td><td>规则：priority=高 且 is_resolved=false。其中退款退货 5 张。</td><td>T019, T031, T036, T039, T042, T046, T047</td><td>今日站会按资金/退款/物流顺序逐单闭环，未关单不过夜。</td></tr><tr><td><span class='tag p0'>P0</span></td><td>分类突增</td><td>「支付问题」后期明显变多</td><td>前半窗口 2024-06-01~2024-06-05 共 3 单（日均 0.60），后半窗口 2024-06-06~2024-06-11 共 13 单（日均 2.17），日均增幅 261%。规则：后期≥4 单、净增≥3、日均增幅≥50%。</td><td>T020, T022, T025, T028, T030, T032, T035, T037, T040, T041, T046, T048, T050</td><td>安排支付问题专项排查，优先核对近期支付/退款规则和系统变更。</td></tr><tr><td><span class='tag p0'>P0</span></td><td>资金风险</td><td>出现重复扣款或多扣款</td><td>描述命中资金风险词，共 6 单；与支付突增合并解读，不再单列重复扣款主题。</td><td>T012, T022, T030, T037, T046, T050</td><td>立刻核对支付对账，优先退回多扣金额并排查支付回调。</td></tr><tr><td><span class='tag p0'>P0</span></td><td>重复问题</td><td>退款或垫付费用迟迟不到账</td><td>命中延迟/体验主题词后共 5 单，阈值 3。不含单纯询价运费。</td><td>T001, T007, T031, T042, T047</td><td>把同一问题收成标准处理路径，避免用户反复进线。</td></tr><tr><td><span class='tag p1'>P1</span></td><td>低满意度</td><td>「投诉」平均满意度仅 1.0</td><td>投诉 共 4 单，均分 1.0，低分(≤2) 4 单。只取均分≤2.0 的最差 2 类，避免整体分偏低时全面亮红灯。</td><td>—</td><td>对投诉做质检抽样，先看处理时限和话术，而不是再开一张大盘。</td></tr><tr><td><span class='tag p1'>P1</span></td><td>重复问题</td><td>机器人/在线客服无法解决</td><td>命中延迟/体验主题词后共 3 单，阈值 3。不含单纯询价运费。</td><td>T026, T034, T044</td><td>把同一问题收成标准处理路径，避免用户反复进线。</td></tr><tr><td><span class='tag p1'>P1</span></td><td>渠道关联</td><td>电话渠道满意度比在线低 0.62 分</td><td>电话 16 单均分 1.94，在线 34 单均分 2.56，差距 0.62 ≥ 0.4。电话未解决 4 单。</td><td>—</td><td>电话进线按退款/物流优先人工接入，不要再先走机器人。</td></tr></tbody>
+    </table>
+  </section>
+  <section>
+    <h2>行动建议</h2>
+    <ul><li>立刻核对支付对账，优先退回多扣金额并排查支付回调。</li><li>今日站会按资金/退款/物流顺序逐单闭环，未关单不过夜。</li><li>电话进线按退款/物流优先人工接入，不要再先走机器人。</li></ul>
+  </section>
+</body>
+</html>

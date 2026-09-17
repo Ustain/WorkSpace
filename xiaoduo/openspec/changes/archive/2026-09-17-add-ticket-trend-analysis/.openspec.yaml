@@ -1,0 +1,3 @@
+schema: spec-driven
+created: 2026-09-17
+goal: 从50条工单中自动发现趋势与异常，输出主管可读报告
