@@ -1,11 +1,12 @@
 # 0111 · 客服工单趋势分析
 
+仓库：[https://github.com/Ustain/WorkSpace/tree/main/xiaoduo](https://github.com/Ustain/WorkSpace/tree/main/xiaoduo)
+
 给客服主管看的离线分析工具：读取 50 条工单，输出 3 条互不重复的今日关注、趋势和行动建议。不接线上系统，不调用 LLM API。图表用内嵌 SVG，断网也能看。
 
 ## 怎么跑
 
 ```bash
-cd D:\LocalRepository\workspace\20260813\WorkSpace\xiaoduo
 python analyze.py
 python -m unittest discover -s tests
 ```
@@ -54,11 +55,29 @@ python analyze.py --input data/tickets.json --output-dir output
 
 投诉从 1 单到 3 单不再当成「突增」。低满意度只保留投诉 1.0，不再把支付/物流/退款一起刷红。
 
+## 截图
+
+### 开发过程
+
+Cursor 终端中运行分析与单测：
+
+![Cursor 终端截图](./Cursor终端截图.png)
+
+### 运行结果
+
+浏览器打开 `output/report.html` 后的 Dashboard：
+
+![运行结果截图](./运行结果截图.png)
+
+完整报告也可直接看 [output/report.html](./output/report.html) 和 [output/report.md](./output/report.md)。
+
 ## 交付物
 
-- 本 README：维度、规则、发现、复现方式
-- `output/report.html` / `output/report.md`：运行结果
-- OpenSpec：`openspec/specs/ticket-trend-analysis/spec.md`
+- GitHub：[https://github.com/Ustain/WorkSpace/tree/main/xiaoduo](https://github.com/Ustain/WorkSpace/tree/main/xiaoduo)
+- README：分析维度、关键发现、AI 工具使用情况
+- 开发工具截图：`Cursor终端截图.png`
+- 运行结果截图：`运行结果截图.png`
+- 分析输出：`output/report.html`、`output/report.md`
 
 ## AI 工具使用情况
 
