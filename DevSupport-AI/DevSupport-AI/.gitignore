@@ -1,0 +1,56 @@
+# ---------- 敏感信息 ----------
+.env
+.env.*
+!.env.example
+
+# ---------- Python 后端 ----------
+# 虚拟环境
+.venv/
+venv/
+env/
+
+# 字节码 / 缓存
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 打包构建产物
+*.egg-info/
+*.egg
+build/
+dist/
+wheels/
+*.whl
+
+# 测试 / 工具缓存
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# ---------- 前端 ----------
+# 依赖
+node_modules/
+
+# 构建产物
+frontend/dist/
+frontend/dist-ssr/
+
+# 本地环境文件
+*.local
+
+# ---------- 日志 / 数据库 ----------
+*.log
+*.db
+*.sqlite
+*.sqlite3
+
+# ---------- IDE / 编辑器 ----------
+.idea/
+.vscode/
+*.swp
+
+# ---------- 操作系统 ----------
+.DS_Store
+Thumbs.db
