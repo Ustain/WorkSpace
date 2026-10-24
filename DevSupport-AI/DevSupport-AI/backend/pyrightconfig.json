@@ -1,5 +1,14 @@
 {
+  "include": ["app", "scripts", "eval", "benchmark"],
+  "exclude": ["**/__pycache__", "**/*.pyc", ".venv"],
   "venvPath": ".",
   "venv": ".venv",
-  "typeCheckingMode": "standard"
+  "typeCheckingMode": "standard",
+  "pythonVersion": "3.11",
+  "executionEnvironments": [
+    {
+      "root": ".",
+      "extraPaths": ["."]
+    }
+  ]
 }

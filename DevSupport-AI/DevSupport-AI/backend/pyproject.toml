@@ -60,3 +60,15 @@ testpaths = ["tests"]
 [tool.ruff]
 line-length = 100
 target-version = "py311"
+
+[tool.basedpyright]
+pythonVersion = "3.11"
+typeCheckingMode = "standard"
+venvPath = "."
+venv = ".venv"
+executionEnvironments = [
+    { root = ".", extraPaths = ["."] }
+]
+# 项目以 `python -m scripts.xxx` 方式运行，app/scripts 是 backend 下的顶层包，
+# 绝对导入是正确用法，关闭该误报
+reportImplicitRelativeImport = "none"
