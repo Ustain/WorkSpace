@@ -2,16 +2,16 @@
 # @doc: 后端，AI Agent知识进阶，后端、AI大模型、场景题面试大全：https://golangstar.cn/
 """LangGraph 编排状态。"""
 
-from typing import Any, TypedDict
+from typing import Any, Required, TypedDict
 
 
 class AgentState(TypedDict, total=False):
-    # 输入与上下文
-    tenant_id: str
-    user_id: str
-    conversation_id: str
-    is_internal: bool
-    query: str
+    # 输入与上下文：每请求必传（run() 的 init 全量提供），全程存在于状态
+    tenant_id: Required[str]
+    user_id: Required[str]
+    conversation_id: Required[str]
+    is_internal: Required[bool]
+    query: Required[str]
     history: list[dict]              # 历史消息 [{role, content}]
     collected_entities: dict         # 记忆中已收集的实体
 

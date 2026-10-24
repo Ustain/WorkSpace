@@ -7,6 +7,7 @@
 """
 
 import asyncio
+from typing import Any
 
 from langgraph.graph import END, START, StateGraph
 
@@ -52,7 +53,7 @@ def build_graph(ctx: ToolContext, trace: TraceCollector):
         with timer() as t:
             cached_route = None if history else await route_cache.get(state["query"])
             if cached_route:
-                res = {**cached_route, "tokens": 0}
+                res: dict[str, Any] = {**cached_route, "tokens": 0}
             else:
                 res = await intent_router.classify(state["query"], history)
                 if not history:
@@ -92,8 +93,9 @@ def build_graph(ctx: ToolContext, trace: TraceCollector):
         return "specialists"
 
     async def clarify_node(state: AgentState) -> dict:
-        trace.step("clarify", input_summary=state["query"], output_summary=state["clarify_question"])
-        return {"final_answer": state["clarify_question"], "need_human": False}
+        clarify_q = state.get("clarify_question", "")
+        trace.step("clarify", input_summary=state["query"], output_summary=clarify_q)
+        return {"final_answer": clarify_q, "need_human": False}
 
     async def semantic_cache_node(state: AgentState) -> dict:
         with timer() as ct:
@@ -142,7 +144,7 @@ def build_graph(ctx: ToolContext, trace: TraceCollector):
         coros = []
         if "api_diagnostic" in route:
             coros.append(_run_agent("api_diagnostic", api_diagnostic.diagnose(
-                query, entities, ctx, is_rate_limit=state["intent"] == "rate_limit")))
+                query, entities, ctx, is_rate_limit=state.get("intent") == "rate_limit")))
         if "billing" in route:
             coros.append(_run_agent("billing", billing.handle(query, entities, ctx)))
         # doc_rag 仅在没有诊断/账单作为主答时单独使用，避免重复（诊断/账单内部已含文档）
@@ -168,7 +170,7 @@ def build_graph(ctx: ToolContext, trace: TraceCollector):
         return {
             "agent_outputs": outputs,
             "rag_citations": citations,
-            "need_human": need_human or state["intent"] == "ticket",
+            "need_human": need_human or state.get("intent") == "ticket",
             "pending_ticket": need_ticket,
         }
 
@@ -188,7 +190,7 @@ def build_graph(ctx: ToolContext, trace: TraceCollector):
             evidence = outputs["billing"].evidence
         with timer() as t:
             tk = await ticket.create_from_context(
-                query=state["query"], intent=state["intent"], entities=state.get("entities", {}),
+                query=state["query"], intent=state.get("intent", ""), entities=state.get("entities", {}),
                 ai_diagnosis=ai_diag, evidence=evidence, ctx=ctx,
                 user_id=state.get("user_id", ""), conversation_id=state["conversation_id"])
         trace.step("ticket", input_summary=state["query"], output_summary=tk.message, duration_ms=t.ms)
@@ -299,7 +301,7 @@ async def run(
     if ticket_message and ticket_message not in answer:
         answer = f"{answer}\n\n{ticket_message}"
 
-    result = {
+    result: dict[str, Any] = {
         "answer": answer,
         "intent": final.get("intent"),
         "confidence": final.get("confidence"),

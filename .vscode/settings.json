@@ -1,0 +1,16 @@
+{
+  "basedpyright.analysis.extraPaths": ["DevSupport-AI/DevSupport-AI/backend"],
+  "basedpyright.analysis.typeCheckingMode": "standard",
+  "basedpyright.analysis.diagnosticSeverityOverrides": {
+    "reportMissingTypeArgument": "none",
+    "reportMissingTypeStubs": "none",
+    "reportUnknownMemberType": "none",
+    "reportUnknownVariableType": "none",
+    "reportUnknownArgumentType": "none",
+    "reportUnknownParameterType": "none",
+    "reportMissingParameterType": "none",
+    "reportAny": "none",
+    "reportExplicitAny": "none",
+    "reportUnusedCallResult": "none"
+  }
+}
